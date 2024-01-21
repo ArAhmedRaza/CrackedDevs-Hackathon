@@ -1,10 +1,15 @@
 :root {
     --size: 1.4;
-    --font: 'JetBrains Mono', monospace;
+    --font: "JetBrains Mono", monospace;
 }
 @font-face {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     src: url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap");
+}
+html,
+body {
+    height: 100%;
+    margin: 0;
 }
 .terminal {
     --background: black;
@@ -14,3 +19,14 @@
 .cmd-cursor {
     --original-color: white;
 }
+.card .terminal {
+    height: 100% !important;
+}
+.logo {
+    text-align: center;
+    font-weight: bold;
+}
+.job-title {
+    color: yellow;  /* Change this to the desired color */
+    font-weight: bold;
+  }

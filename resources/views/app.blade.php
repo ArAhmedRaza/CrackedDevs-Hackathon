@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How Worthy Am I?</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/jquery-terminal/jquery.terminal.min.css') }}">
 </head>
 
 <body>
-    <!-- <main class="container"> -->
     @yield('content')
     <!-- </main> -->
 
@@ -20,13 +20,6 @@
     <script src="{{ asset('assets/bootstrap/bootstrap-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/bootstrap/proper.min.js') }}"></script>
-    <!-- <script>
-        $(function() {
-            $('#terminal').terminal({},{
-                greetings: 'Answer Some Questions and get Jobs, Roadmaps and Score for Your Career'
-            });
-        });
-    </script> -->
     <script>
         $(document).ready(function() {
             // Array to store user answers
@@ -41,9 +34,11 @@
                 "Are there areas where you feel you could improve?"
             ];
 
+            var mergedArray = [];
+            var questionIndex = 0;
+
             // Function to ask a question
             function askQuestion(index) {
-                questionIndex = 0;
                 $("#terminal").terminal(function(command) {
                     // Check if the user entered a response
                     if (command.trim() === "") {
@@ -57,16 +52,71 @@
                             this.set_prompt(questions[questionIndex + 1] + '\n> ');
                             questionIndex++;
                         } else {
-                            simulateLoading(function() {
-                                this.echo("Generate Best Results for You...");
-                            }.bind(this));
-                            // You can now use the userAnswers array for further processing
-                            console.log(userAnswers);
+                            for (var i = 0; i < questions.length; i++) {
+                                var question = questions[i];
+                                var answer = userAnswers[i];
+                                mergedArray.push(question, answer);
+                            }
+                            $.ajax({
+                                url: 'http://localhost/CrackedDevs-Hackathon/public/post-answers',
+                                method: 'POST',
+                                data: {
+                                    answers: mergedArray
+                                },
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function(response) {
+                                    // Apply custom styling to the API response
+                                    this.echo("Result: ", {
+                                        cssClass: 'bold-text blue-text',
+                                        finalize: function(div) {
+                                            div.html(response);
+                                        }
+                                    });
+
+                                    setTimeout(function() {
+                                        //your code to be executed after 1 second
+                                    }, 1000);
+
+                                    this.echo("Here are some Job Recommandationn for You!");
+
+                                    getjobs().then(function(jobsResponse) {
+                                        if (Array.isArray(jobsResponse) && jobsResponse.length > 0) {
+                                            // Display each job in the terminal
+                                            jobsResponse.forEach(function(job) {
+                                                this.echo('Job Title:' + job.title);
+                                                this.echo("URL: " + job.url);
+                                                this.echo("Company: " + job.company);
+                                                this.echo("Min Salary: $" + (job.min_salary_usd ? job.min_salary_usd : "Not Given"));
+                                                this.echo("Max Salary: $" + (job.max_salary_usd ? job.max_salary_usd : "Not Given"));
+                                                this.echo("Location: " + (job.location_iso ? job.location_iso : "Not specified"));
+                                            }.bind(this));
+                                        } else {
+                                            this.echo("No job details available.");
+                                        }
+                                    }.bind(this)).catch(function(error) {
+                                        // Handle error from getjobs
+                                        this.echo(error, {
+                                            cssClass: 'bold-text green-text'
+                                        });
+                                    }.bind(this));
+
+                                }.bind(this),
+                                error: function(error) {
+                                    // Apply custom styling to the error message
+                                    this.echo("Error communicating with the API.", {
+                                        cssClass: 'bold-text green-text'
+                                    });
+                                }.bind(this)
+                            });
+
+
                         }
                     }
                 }, {
                     prompt: questions[questionIndex] + '\n> ',
-                    greetings: 'Answer Some Questions and get Jobs, Roadmaps and Score for Your Career'
+                    greetings: 'Answer Just 5 Simplest Questions to get Best Offers'
                 });
             }
 
@@ -74,19 +124,22 @@
             askQuestion(0);
         });
 
-        // Function to simulate loading with dots
-        function simulateLoading(callback) {
-            var dots = 0;
-            var loadingInterval = setInterval(function() {
-                dots = (dots % 4) + 1;
-                $("#terminal").terminal("Generate Best Results for You" + ".".repeat(dots));
-            }, 500);
-
-            // Execute the callback after a certain time (simulating processing time)
-            setTimeout(function() {
-                clearInterval(loadingInterval);
-                callback();
-            }, 2000);
+        function getjobs() {
+            return new Promise(function(resolve, reject) {
+                $.ajax({
+                    url: 'http://localhost/CrackedDevs-Hackathon/public/get-jobs',
+                    method: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        resolve(response);
+                    },
+                    error: function(error) {
+                        reject("Error getting Relevant Jobs. Please Try Again Later.");
+                    }
+                });
+            });
         }
     </script>
 </body>
