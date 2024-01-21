@@ -1,0 +1,16 @@
+:root {
+    --size: 1.4;
+    --font: 'JetBrains Mono', monospace;
+}
+@font-face {
+    font-family: 'JetBrains Mono', monospace;
+    src: url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap");
+}
+.terminal {
+    --background: black;
+    --link-color: lightblue;
+    --size: 1.5;
+}
+.cmd-cursor {
+    --original-color: white;
+}
