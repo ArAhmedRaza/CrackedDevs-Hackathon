@@ -1,66 +1,44 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Inspiration
+The inspiration behind AI Career Consultant was to create an advanced AI engine that could interact with users, assess their skills, and provide personalized career guidance.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### What it does
+AI Career Consultant engages users through targeted questions, offering personalized job suggestions, tips, and career roadmaps. It predicts users' scores based on abilities and market conditions, empowering them for success.
 
-## About Laravel
+### How we built it
+We built an AI Career Consultant using OPENAI LLM and GPT Modal to analyze user responses. The system utilizes natural language processing and machine learning to understand and predict users' needs in the dynamic job market.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Challenges we ran into
+One challenge was developing robust algorithms for accurate predictions. Integrating dynamic market data and ensuring user-friendly interactions posed additional challenges.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Accomplishments that we're proud of
+We are proud to have developed an AI Career Consultant that effectively tailors guidance, providing users with valuable insights and empowering them to navigate their professional journeys.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### What we learned
+This project taught us the importance of balancing user interaction, algorithmic accuracy, and staying updated with market trends for effective career guidance.
 
-## Learning Laravel
+### What's Next for AI Career Consultant
+The next phase for AI Career Consultant includes enhancing user-friendliness, and training LLMs with proprietary data for improved predictions. We plan to implement a progress system, and skills tests aligned with market needs, and integrate job descriptions from job posting sites to refine and optimize our algorithm for more accurate and effective career guidance. Continuous improvement remains a key focus to ensure users receive the best results for their roadmaps and tips.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Technologies
+#### AI:
+OPENAI LLM
+GPT MODEL 3 Turbo
+OPENAI Assistant
+Cracked Devs Job API
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### Backend
+Laravel
+PHP
+APIs
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Frontend
 
-## Laravel Sponsors
+Javascript
+Jquery
+HTML
+CSS
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#### Note: 
+Initially, I have just tried to build a simple idea of how we can utilise AI to predict scores and give him (user) tips, roadmaps and best-suited job offers. You must answer just 5 questions to get your score, roadmap, tips and job offers. It analyzes User Response compares it with the Current Market and generates a Score for the User. Give him tips and roadmaps on how he (The user) can improve his skills to get even the best job offers. Lastly, It analyzes user skills with [Crackeddevs] (https://crackeddevs.com/) job descriptions and gets him the best-suited offers to apply.
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Leave a ❤ if you like it!
